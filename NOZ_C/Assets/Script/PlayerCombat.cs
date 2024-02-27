@@ -13,18 +13,22 @@ public class PlayerCombat : MonoBehaviour
     private Animator anim;
     private Animator anime;
     public static bool isAttacking = false;
+    public AudioClip attackSound;
+    
+    private AudioSource audioFX;
     #endregion
-
     void Start()
     {
         anim = GetComponent<Animator>();
         GameObject tempchar = GameObject.FindGameObjectWithTag("Player");
+        audioFX = tempchar.GetComponent<CharacterController>().GetComponent<AudioSource>();
         anime = tempchar.GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J) && !anime.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
+        if(Input.GetKeyDown(KeyCode.J) && !anime.GetCurrentAnimatorStateInfo(0).IsName("Dodge")
+            && !anime.GetCurrentAnimatorStateInfo(0).IsTag("Impact"))
         {
             Attack();
         }   
@@ -40,6 +44,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 anim.runtimeAnimatorController = combo[ComboCounter].aniOV;
                 anim.Play("Attack", 0, 0.15f);
+                audioFX.PlayOneShot(attackSound);
                 isAttacking = true;
                 ComboCounter++;
                 lastpress = Time.time;

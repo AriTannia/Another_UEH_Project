@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ChangeHuong
-  - Cam_Ngang
+  - Audio
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float SmoothSpeed = 0.125f;
     public Vector3 Offset;
+
     private void FixedUpdate()
     {
         Vector3 desiredPosi = target.position + Offset;

@@ -30,6 +30,12 @@ public class NozoCharacterController : MonoBehaviour
     private bool isDodging = false;
     private float dodgeTimer;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     #endregion
     void Start()
     {
@@ -41,13 +47,13 @@ public class NozoCharacterController : MonoBehaviour
     }
     void Update()
     {
-        Gravity_Control();
-
-        if (!isDodging && !ani.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        Gravity_Control();       
+  
+        if (!isDodging && !ani.GetCurrentAnimatorStateInfo(0).IsTag("Attack") &&
+            !ani.GetCurrentAnimatorStateInfo(0).IsTag("Impact"))
         {
             Player_Rota();
-            Dichuyen();
-            
+            Dichuyen();       
         }
 
         if (Input.GetKeyDown(KeyCode.K))
