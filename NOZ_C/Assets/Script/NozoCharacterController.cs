@@ -28,6 +28,7 @@ public class NozoCharacterController : MonoBehaviour
     [SerializeField] private AnimationCurve dodgeCurve;
 
     private bool isDodging = false;
+    private bool Dodge_Exe = false;
     private float dodgeTimer;
 
     private AudioManager audioManager;
@@ -56,7 +57,7 @@ public class NozoCharacterController : MonoBehaviour
             Dichuyen();       
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && !Dodge_Exe)
         {
             if (direction.magnitude != 0) 
             {
@@ -160,6 +161,7 @@ public class NozoCharacterController : MonoBehaviour
         ani.SetTrigger("Dodge");
         ani.SetBool("IsMoving", false);
         isDodging = true;
+        Dodge_Exe = true;
         float timer = 0;
         while(timer <dodgeTimer)
         {
@@ -170,5 +172,6 @@ public class NozoCharacterController : MonoBehaviour
             yield return null;
         }
         isDodging = false;
+        Dodge_Exe = false;
     }
 }

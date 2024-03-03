@@ -362,6 +362,7 @@
 "Assets/Script/NozoCharacterController.cs"
 "Assets/Script/PlayerCombat.cs"
 "Assets/Script/State_Im_Di.cs"
+"Assets/Script/StopCam.cs"
 "Assets/Script/TriggerDodge.cs"
 "Assets/Script/WeaponAttribute.cs"
 -langversion:9.0
